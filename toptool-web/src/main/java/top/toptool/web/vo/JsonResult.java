@@ -14,6 +14,11 @@ public class JsonResult<T> {
     public JsonResult() {
     }
 
+    public JsonResult(boolean success, String error) {
+        this.success = success;
+        this.error = error;
+    }
+
     public JsonResult(boolean success, T data) {
         this.success = success;
         this.data = data;

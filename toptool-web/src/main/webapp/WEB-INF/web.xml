@@ -54,7 +54,7 @@
     </welcome-file-list>
 
     <error-page>
-        <location>/WEB-INF/jsp/error/404.jsp</location>
+        <location>/WEB-INF/jsp/error/index.jsp</location>
     </error-page>
 
 </web-app>

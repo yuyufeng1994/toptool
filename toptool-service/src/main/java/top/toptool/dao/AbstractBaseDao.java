@@ -18,7 +18,6 @@ import java.util.List;
  * @author yuyufeng
  * @date 2018/5/31.
  */
-@Component
 public abstract class AbstractBaseDao<T> implements IBaseDao{
     /**
      * 根据ID获取一个实体
@@ -26,7 +25,7 @@ public abstract class AbstractBaseDao<T> implements IBaseDao{
      * @param id
      * @return
      */
-     T get(Long id) {
+    public T get(Long id) {
         return (T) getMapper().selectByPrimaryKey(id);
     }
 
@@ -36,7 +35,7 @@ public abstract class AbstractBaseDao<T> implements IBaseDao{
      * @param entity
      * @return
      */
-    T get(T entity) {
+    public T get(T entity) {
         return (T) getMapper().selectOne(entity);
     }
 
@@ -45,7 +44,7 @@ public abstract class AbstractBaseDao<T> implements IBaseDao{
      *
      * @param entity
      */
-    void insert(T entity) {
+    public void insert(T entity) {
         getMapper().insertSelective(entity);
     }
 
@@ -54,7 +53,7 @@ public abstract class AbstractBaseDao<T> implements IBaseDao{
      *
      * @param id
      */
-    void delete(Long id) {
+    public void delete(Long id) {
         getMapper().deleteByPrimaryKey(id);
     }
 
@@ -63,7 +62,7 @@ public abstract class AbstractBaseDao<T> implements IBaseDao{
      *
      * @param entity
      */
-    void update(T entity) {
+    public void update(T entity) {
         getMapper().updateByPrimaryKeySelective(entity);
     }
 
@@ -72,7 +71,7 @@ public abstract class AbstractBaseDao<T> implements IBaseDao{
      *
      * @return
      */
-    List<T> list() {
+    public List<T> list() {
         return getMapper().selectAll();
     }
 
@@ -82,7 +81,7 @@ public abstract class AbstractBaseDao<T> implements IBaseDao{
      * @param entity
      * @return
      */
-    List<T> list(T entity) {
+    public List<T> list(T entity) {
         return getMapper().select(entity);
     }
 
@@ -94,7 +93,7 @@ public abstract class AbstractBaseDao<T> implements IBaseDao{
      * @param order
      * @return
      */
-    PageInfo<T> page(int page, int size, String order) {
+    public PageInfo<T> page(int page, int size, String order) {
         PageHelper.startPage(page, size, order);
         List<T> list = getMapper().selectAll();
         return new PageInfo<>(list, 7);
@@ -108,7 +107,7 @@ public abstract class AbstractBaseDao<T> implements IBaseDao{
      * @param entity
      * @return
      */
-    PageInfo<T> page(int page, int size, String order,T entity) {
+    public PageInfo<T> page(int page, int size, String order,T entity) {
         PageHelper.startPage(page, size, order);
         List<T> list = getMapper().select(entity);
         return new PageInfo<>(list, 7);

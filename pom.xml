@@ -11,6 +11,7 @@
     <modules>
         <module>toptool-web</module>
         <module>toptool-service</module>
+        <module>toptool-config</module>
     </modules>
 
     <properties>
@@ -96,7 +97,6 @@
             <version>1.1.7</version>
         </dependency>
         <!-- java日志： slf4j,log4j,logback,common-looging slf4j是规范/接口 使用：slf4j,logback end-->
-
     </dependencies>
 
     <build>
