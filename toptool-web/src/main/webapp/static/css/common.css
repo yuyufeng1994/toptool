@@ -1,0 +1,6 @@
+.page-content{
+    min-height: 670px;
+}
+#nav-list a{
+    cursor: pointer;
+}

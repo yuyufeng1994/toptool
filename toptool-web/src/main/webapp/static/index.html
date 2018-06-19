@@ -39,35 +39,7 @@
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8 page-content" id="page-content">
-            <h3>在线正则表达式</h3>
-            <div class="form-group">
-                <label for="input1">正则表达式</label>
-                <input type="text" class="form-control" id="input1" placeholder="请输入正则表达式">
-            </div>
-            <div class="form-group">
-                <label for="input2">待匹配文本</label>
-                <textarea id="input-area" class="form-control" id="input2" rows="10">aaabbcc</textarea>
-            </div>
-            <div class="form-group">
-                <label for="input3">匹配结果</label>
-                <textarea id="result-area" class="form-control" rows="10" id="input3">aaabbcc</textarea>
-            </div>
 
-            <div class="form-group">
-                <div class="btn-group" role="group" aria-label="...">
-                    <button type="button" class="btn btn-primary" onclick="regCheck()">开始匹配</button>
-                    <button type="button" class="btn btn-danger" onclick="regClear()">清空</button>
-                    <button type="button" class="btn btn-default" onclick="regBack()"><i
-                            class="glyphicon glyphicon-arrow-left"></i> 回退
-                    </button>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="alert  alert-info" id="alert-box">
-                    <strong id="alert-type">提示!</strong>
-                    <ii id="alert-info">小提示</ii>
-                </div>
-            </div>
         </div>
         <div class="col-md-2"></div>
     </div>
@@ -78,37 +50,6 @@
 <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="js/common.js"></script>
 <script>
-    //    loadContent($("#nav-json-format"), 'json.html')
-
-    var loadContent = function (mythis, pageUrl) {
-        $("#nav-list").find("li").each(function () {
-            $(this).removeClass("active")
-        })
-        $(mythis).parent().addClass("active")
-        $.get("page/" + pageUrl, function (res) {
-            $("#page-content").html(res)
-        })
-    }
-
-    var regCheck = function () {
-        console.log("sss")
-        var prepareText = $("#input2").val()
-        var pattern = $("#input1").val()
-
-        var str = "Visit W3School";
-        var patt = new RegExp(pattern, "g");
-        var resultStr = "";
-        var result
-        while ((result = patt.exec(prepareText)) != null) {
-            console.log(result)
-            resultStr += result;
-            resultStr += "<br />";
-            resultStr += patt.lastIndex;
-        }
-        console.log(resultStr)
-        $("#input3").val(resultStr)
-    }
-
-
+    loadContent($("#nav-json-format"), 'json.html')
 </script>
 </html>

@@ -1,0 +1,44 @@
+<h3>在线正则表达式</h3>
+<div class="form-group">
+    <label for="input1">正则表达式</label>
+    <input type="text" class="form-control" id="input1" placeholder="请输入正则表达式" value="^aaabbcc$">
+</div>
+<div class="form-group">
+    <label for="input2">待匹配文本</label>
+    <textarea class="form-control" id="input2" rows="10">aaabbcc</textarea>
+</div>
+<div class="form-group">
+    <label for="input3">匹配结果</label>
+    <textarea class="form-control" rows="10" id="input3"></textarea>
+</div>
+
+<div class="form-group">
+    <div class="btn-group" role="group" aria-label="...">
+        <button type="button" class="btn btn-primary" onclick="regCheck()">开始匹配</button>
+        <button type="button" class="btn btn-danger" onclick="regClear()">清空</button>
+        <button type="button" class="btn btn-default" onclick="regBack()"><i
+                class="glyphicon glyphicon-arrow-left"></i> 回退
+        </button>
+    </div>
+</div>
+<div class="form-group">
+    <div class="alert  alert-info" id="alert-box">
+        <strong id="alert-type">提示:</strong>
+        <ii id="alert-info">返回一个数组，其中存放匹配的结果。如果未找到匹配，则返回值为 空。</ii>
+    </div>
+</div>
+<script>
+    var regCheck = function () {
+        var prepareText = $("#input2").val()
+        var pattern = $("#input1").val()
+
+        var str = "Visit W3School";
+        var patt = new RegExp(pattern, "g");
+        var resultStr = "";
+        var result=""
+        while ((result = patt.exec(prepareText)) != null) {
+            resultStr += result + "\r\n";
+        }
+        $("#input3").text(resultStr)
+    }
+</script>
