@@ -91,11 +91,24 @@
     }
 
     var regCheck = function () {
+        console.log("sss")
         var prepareText = $("#input2").val()
-        var reg = $("#input1").val()
-        var result = $("#input3").val()
+        var pattern = $("#input1").val()
 
+        var str = "Visit W3School";
+        var patt = new RegExp(pattern, "g");
+        var resultStr = "";
+        var result
+        while ((result = patt.exec(prepareText)) != null) {
+            console.log(result)
+            resultStr += result;
+            resultStr += "<br />";
+            resultStr += patt.lastIndex;
+        }
+        console.log(resultStr)
+        $("#input3").val(resultStr)
     }
+
 
 </script>
 </html>
