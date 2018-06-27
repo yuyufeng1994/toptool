@@ -91,20 +91,15 @@
 
     <!--拦截器 -->
     <mvc:interceptors>
-        <!--多个拦截器,顺序执行 -->
         <mvc:interceptor>
-            <!--/** 表示所有url 包括子url路径 -->
             <mvc:mapping path="/**"/>
             <bean class="top.toptool.web.interceptor.RootInterceptor"></bean>
         </mvc:interceptor>
-
-        <mvc:interceptor>
+      <!--  <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <bean class="top.toptool.web.interceptor.URLBrokerLauncherInterceptor"></bean>
-        </mvc:interceptor>
-
+        </mvc:interceptor>-->
     </mvc:interceptors>
-
 
     <!-- 上传配置 -->
     <bean id="multipartResolver"

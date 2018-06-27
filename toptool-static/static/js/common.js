@@ -1,4 +1,6 @@
 //load main panel
+// const serviceServer = "http://127.0.0.1:8080"
+const serviceServer = "http://111.231.83.73:8180"
 $(function () {
     var locationUrl = window.location.href;
     //激活按钮
@@ -13,6 +15,12 @@ var loadContent = function (pageUrl) {
     $.get("page/" + pageUrl, function (res) {
         $("#page-content").html(res)
     })
+}
+
+var commonFunction = {
+    inputClear:function () {
+        $("#input-area").val("");
+    }
 }
 
 var myUtils = {
