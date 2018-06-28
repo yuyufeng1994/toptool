@@ -1,0 +1,70 @@
+<h3>提取文章关键词 <small><a target="_blank" href="https://blog.csdn.net/qq_18860653/article/details/78436987" title="关于TextRank提取文章关键词"><i class="glyphicon glyphicon-question-sign"></i></a></small></h3>
+<div class="form-group">
+    <textarea id="input-area" class="form-control" rows="20">
+        20世纪90年代，硬件领域出现了单片式计算机系统，这种价格低廉的系统一出现就立即引起了自动控制领域人员的注意，因为使用它可以大幅度提升消费类电子产品（如电视机顶盒、面包烤箱、移动电话等）的智能化程度。Sun公司为了抢占市场先机，在1991年成立了一个称为Green的项目小组，帕特里克、詹姆斯·高斯林、麦克·舍林丹和其他几个工程师一起组成的工作小组在加利福尼亚州门洛帕克市沙丘路的一个小工作室里面研究开发新技术，专攻计算机在家电产品上的嵌入式应用。
+由于C++所具有的优势，该项目组的研究人员首先考虑采用C++来编写程序。但对于硬件资源极其匮乏的单片式系统来说，C++程序过于复杂和庞大。</textarea>
+</div>
+
+<div class="form-group">
+    <div class="btn-group" role="group" aria-label="...">
+        <button type="button" class="btn btn-primary" onclick="doAction()">立即提取</button>
+        <button type="button" class="btn btn-danger" onclick="commonFunction.inputClear()">清空</button>
+    </div>
+</div>
+<div class="form-group">
+    <div class="alert  alert-info" id="alert-box">
+        <strong id="alert-type">提示!</strong>
+        <ii id="alert-info">请输入您要提取关键词的文章，结果将输出在下方表格中</ii>
+    </div>
+</div>
+<!--<div class="form-group">-->
+<table class="table table-condensed table-striped">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>关键词</th>
+        <th>重要程度</th>
+    </tr>
+    </thead>
+    <tbody id="table-result">
+
+    </tbody>
+</table>
+<!--</div>-->
+<script>
+
+    var doAction = function () {
+        $("#table-result").html("提取中...")
+        var text = $("#input-area").val().trim();
+        if (text.length > 5000) {
+            alert("为了减小服务器压力，文章长度必须小于5000！")
+        }
+        var params = {
+            text: text,
+            k: 10,
+            stopWords: ['的', '啊']
+        }
+        $.ajax({
+            url: serviceServer + "/tool/extract-keywords",
+            type: 'POST',
+            data: JSON.stringify(params),
+            async: false,
+            contentType: "application/json;charset=UTF-8",
+            xhrFields: {
+                withCredentials: true
+            },
+
+            success: function (res) {
+                var trStrs = '';
+                for (var i = 0; i < res.data.length; i++) {
+                    trStrs += '<tr><td>' + (i + 1) + '</td><td>' + res.data[i].key + '</td><td>' + res.data[i].significance + '</td></tr>'
+                }
+                $("#table-result").html(trStrs)
+            },
+            error: function (res) {
+                alert("请求失败")
+            }
+        });
+
+    }
+</script>
